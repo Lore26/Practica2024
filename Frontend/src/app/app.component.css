@@ -1,0 +1,11 @@
+.navbar {
+  background-color: #000;
+  height: 80px;
+}
+
+#login-btn {
+  background-color: #000;
+  background-image: linear-gradient(to right, #FFB017, #FE522C);
+  padding-inline: 15px;
+  border-radius: 5px;
+}

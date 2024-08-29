@@ -1,0 +1,121 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light nav-yellow border-bottom border-top p-0">
+    <div class="container">
+      <a class="navbar-brand fs-4 fw-bold" href="#">
+        <span class="text-white">Train Booking App</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link fw-semibold text-white me-1" routerLink="/home" aria-label="Home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold text-white me-1" routerLink="/trains" aria-label="Trains">Trains</a>
+          </li>
+          <li id="register-btn" class="nav-item" *ngIf="!loggedUserData">
+            <button class="nav-link fw-semibold text-white me-1" (click)="openRegister()" aria-label="Register">
+              Register
+            </button>
+          </li>
+          <li id="login-btn" class="nav-item" *ngIf="!loggedUserData">
+            <button class="nav-link fw-semibold text-white me-1" (click)="openLogin()" aria-label="Login">Login
+            </button>
+          </li>
+          <li class="nav-item" *ngIf="loggedUserData">
+            <a class="nav-link fw-semibold text-white me-1" routerLink="/bookings" aria-label="My Bookings">My
+              Bookings</a>
+          </li>
+          <li class="nav-item" *ngIf="loggedUserData">
+              <span class="nav-link fw-semibold text-white me-1"
+                    aria-label="User Phone">{{ loggedUserData.phone }}</span>
+          </li>
+          <li class="nav-item" *ngIf="loggedUserData">
+            <button class="nav-link fw-semibold text-white me-1" (click)="logoff()" aria-label="Log Off">Log Off
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<div class="modal" id="registerModel" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+        <button type="button" (click)="closeRegister()" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="registerFirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="registerFirstName" [(ngModel)]="registerObj.firstName"
+                   placeholder="John" name="firstname">
+          </div>
+          <div class="mb-3">
+            <label for="registerLastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="registerLastName" [(ngModel)]="registerObj.lastName"
+                   placeholder="Doe" name="lastname">
+          </div>
+          <div class="mb-3">
+            <label for="registerEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="registerEmail" [(ngModel)]="registerObj.email"
+                   placeholder="john.doe@example.com" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="registerPhone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="registerPhone" [(ngModel)]="registerObj.phone"
+                   placeholder="+1234567890" name="phone">
+          </div>
+          <div class="mb-3">
+            <label for="registerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="registerPassword" [(ngModel)]="registerObj.password"
+                   name="password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeRegister()" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onRegister()">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="loginModel" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Log In</h5>
+        <button type="button" (click)="closeLogin()" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="loginPhone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="loginPhone" [(ngModel)]="registerObj.phone" name="phone"
+                   placeholder="+1234567890">
+          </div>
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="loginPassword" [(ngModel)]="registerObj.password"
+                   name="password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeLogin()" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

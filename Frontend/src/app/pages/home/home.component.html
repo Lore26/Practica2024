@@ -1,0 +1,40 @@
+<section class="container">
+  <header class="row d-flex justify-content-center align-items-center">
+    <h1 class="text-center fw-bold mb-2 mx-1 mx-md-4 mt-1">Search for ticket</h1>
+  </header>
+
+  <main class="row d-flex justify-content-center align-items-center">
+    <form class="mx-1 mx-md-4 pt-5" (submit)="onSearch()">
+      <fieldset class="row">
+        <legend class="visually-hidden">Ticket Booking</legend>
+        <div class="col-6">
+          <label class="form-label" for="fromStationSelect">Departure Station</label>
+          <select [(ngModel)]="travelObj.fromStationId" name="fromStationId" id="fromStationSelect" class="form-select">
+            <option value="">Select Departure Station</option>
+            <option *ngFor="let station of stationList" [value]="station.id">{{station.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-6">
+          <label class="form-label" for="toStationSelect">Arrival Station</label>
+          <select [(ngModel)]="travelObj.toStationId" name="toStationId" id="toStationSelect" class="form-select">
+            <option value="">Select Arrival Station</option>
+            <option *ngFor="let station of stationList" [value]="station.id">{{station.name}}</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="row pt-3">
+        <legend class="visually-hidden">Date</legend>
+        <div class="col-6">
+          <label class="form-label" for="dateOfTravelInput">Date Of Travel</label>
+          <input [required]="true" type="date" [(ngModel)]="travelObj.dateOfTravel" name="dateOfTravel" id="dateOfTravelInput" class="form-control" />
+        </div>
+      </fieldset>
+
+      <div class="d-flex justify-content-center mt-4 mx-4 mb-3 mb-lg-4">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+  </main>
+</section>

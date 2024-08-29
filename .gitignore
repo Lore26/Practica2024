@@ -482,3 +482,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/Frontend/.angular/cache/17.3.8/angular-webpack/3f1913a2440a615da46d2d920a9edb5d346e680b/*.pack
